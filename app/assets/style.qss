@@ -1,0 +1,15 @@
+/* #menu_btn {
+    margin-left: auto;
+    margin-right: 0px;
+    padding: 5px;
+    
+} */
+
+#sidebar {
+    border: none
+
+}
+
+#right_frame {
+    background-color : #00F567
+}
