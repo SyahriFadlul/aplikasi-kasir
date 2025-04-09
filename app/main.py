@@ -1,14 +1,20 @@
 import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from PySide6.QtWidgets import QApplication
 
-from views.mainwindow import MainWindow
+from dotenv import load_dotenv
+
+from views.main_window import MainWindow
+from views.login import Login
 
 base_dir = os.path.dirname(__file__)
 assets_dir = os.path.join(base_dir, 'assets')
 
+load_dotenv()
+
 app = QApplication(sys.argv)
-window = MainWindow(app)
+window = Login()
 
 style_path = os.path.join(assets_dir, 'style.qss')
 with open(style_path) as f:

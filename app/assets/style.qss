@@ -1,15 +1,68 @@
-/* #menu_btn {
-    margin-left: auto;
-    margin-right: 0px;
-    padding: 5px;
-    
-} */
+#main {
+    background-color: rgb(238, 238, 238)
+}
+
+#menu_btn {
+    min-width: 20px;
+    min-height: 20px;
+    padding: 0px;
+}
+
+#menu_btn:hover {
+    background-color:rgb(240, 240, 240)
+}
+
+#title_main_menu {
+    margin-top:10px;
+    font: 12px;
+    color:rgb(119, 119, 119)
+}
 
 #sidebar {
-    border: none
-
+    border: none;
+    background-color: rgb(238, 238, 238)
 }
 
-#right_frame {
-    background-color : #00F567
+#sidebar::item {
+    border: 1px none;
+    border-radius: 5px;
 }
+
+#sidebar::item::icon {
+    padding-left: 4px
+}
+
+#sidebar::item:selected {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #EBE300;
+}
+
+#left_section {
+    /*min-width: 50px;
+    max-width: 250px;
+    min-height: 200px;*/
+    background-color: rgb(238, 238, 238)
+}
+
+#right_section {
+    border: 1px solid rgb(223, 223, 223);
+    min-width: 400px;
+    border-radius: 10px;
+    background-color: rgb(238, 238, 238)
+}
+
+#top_sidebar_frame {
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 5px;
+}
+
+/* DASHBOARD */
+
+#frame1, #frame2 {
+    border: 1px solid rgb(223, 223, 223);;
+    border-radius: 5px
+}
+
