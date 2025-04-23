@@ -1,21 +1,29 @@
 #main {
-    background-color: rgb(238, 238, 238)
+    background-color: rgb(255, 255, 255);
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 12px;
 }
 
 #menu_btn {
-    min-width: 20px;
-    min-height: 20px;
+    min-width: 30px;
+    min-height: 30px;
     padding: 0px;
 }
 
-#menu_btn:hover {
-    background-color:rgb(240, 240, 240)
+#menu_btn::hover {
+    background-color:rgb(240, 240, 240);
 }
 
 #title_main_menu {
     margin-top:10px;
-    font: 12px;
-    color:rgb(119, 119, 119)
+    color:rgb(119, 119, 119);
+}
+
+#top_sidebar_frame {
+    margin: 0px;
+    padding: -5px;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
 }
 
 #sidebar {
@@ -24,45 +32,80 @@
 }
 
 #sidebar::item {
-    border: 1px none;
+    border: none;
     border-radius: 5px;
 }
 
 #sidebar::item::icon {
-    padding-left: 4px
+    padding-left: 4px;
 }
 
 #sidebar::item:selected {
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #EBE300;
+    color: #000000;
+    background-color: #ffffff;
+    border: none;
 }
 
 #left_section {
     /*min-width: 50px;
     max-width: 250px;
     min-height: 200px;*/
-    background-color: rgb(238, 238, 238)
+    background-color: rgb(238, 238, 238);
+    border: 1px solid #9a9996;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 #right_section {
-    border: 1px solid rgb(223, 223, 223);
-    min-width: 400px;
-    border-radius: 10px;
-    background-color: rgb(238, 238, 238)
+    min-width:400px;
+    background-color: #ffffff;
+    
 }
 
-#top_sidebar_frame {
-    padding: 0px;
-    margin: 0px;
-    border: 1px solid rgb(219, 219, 219);
+#title {
+    font-weight: bold;
+    font-size: 18px
+}
+
+QLineEdit{
+    color: black    
+}
+
+QLineEdit:!focus:placeholder {
+    color: grey;
+
+}
+
+#rsidebar {
+    background-color:rgb(221, 221, 210);
+    border: 1px solid #9a9996;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#sidebar_items {
+    background-color:rgb(83, 83, 55);
+    border: none;
     border-radius: 5px;
+}
+
+#item_sidebar {
+    background-color:rgb(83, 83, 55);
+    border: none;
+    border-radius: 5px;
+}
+
+#sidebar_items::hover {
+    background:rgb(255, 2, 2);
 }
 
 /* DASHBOARD */
 
 #frame1, #frame2 {
-    border: 1px solid rgb(223, 223, 223);;
+    border: 1px solid rgb(223, 223, 223);
     border-radius: 5px
 }
+
+/* Inventory Management */
+
 

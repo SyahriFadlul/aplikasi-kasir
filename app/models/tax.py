@@ -6,4 +6,4 @@ class Tax(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     rate = Column(Numeric(12, 2), nullable=False)
-    type = Column(String(50), nullable=False)
+    # type = Column(String(50), nullable=False)

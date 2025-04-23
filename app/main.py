@@ -14,7 +14,8 @@ assets_dir = os.path.join(base_dir, 'assets')
 load_dotenv()
 
 app = QApplication(sys.argv)
-window = Login()
+
+window = MainWindow(app)
 
 style_path = os.path.join(assets_dir, 'style.qss')
 with open(style_path) as f:

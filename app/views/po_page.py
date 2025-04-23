@@ -5,5 +5,5 @@ class PO_Page(QWidget):
         super().__init__()
 
         self.layout = QVBoxLayout(self)
-        self.layout.addWidget(QLabel("Ini Halaman Purchase Order"))
+        self.layout.addWidget(QLabel("Ini Halaman Purchase Orderasdasd"))
         

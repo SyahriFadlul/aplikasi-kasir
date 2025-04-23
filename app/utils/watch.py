@@ -14,19 +14,26 @@ class ReloadHandler(FileSystemEventHandler):
     def restart_script(self):
         if self.process:
             self.process.terminate()
+        print(f"🔁 Restarting: {self.script}")
         self.process = subprocess.Popen([sys.executable, self.script])
 
     def on_modified(self, event):
-        if event.src_path.endswith(".py"):
-            print(f"{event.src_path} changed, restarting...")
+        observer.schedule(event_handler, path="app", recursive=True)
+
+        if event.is_directory:
+            return
+
+        if event.src_path.endswith(".py") or event.src_path.endswith(".qss"):
+            print(f"📁 File changed: {event.src_path}")
             self.restart_script()
 
 if __name__ == "__main__":
-    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../", "main.py"))
-    script_to_watch = script_path
-    event_handler = ReloadHandler(script_to_watch)
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    script_path = os.path.join(base_dir, "main.py")
+
+    event_handler = ReloadHandler(script_path)
     observer = Observer()
-    observer.schedule(event_handler, path=".", recursive=True)
+    observer.schedule(event_handler, path=base_dir, recursive=True)
     observer.start()
 
     try:

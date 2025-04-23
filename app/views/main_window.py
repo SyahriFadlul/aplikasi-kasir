@@ -1,10 +1,15 @@
 import os
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QFrame, QHBoxLayout, QVBoxLayout, QStackedWidget, QListWidget, QListWidgetItem, QLabel, QPushButton, QAbstractItemView, QSizePolicy
+from PySide6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QFrame, QHBoxLayout, QVBoxLayout, 
+    QStackedWidget, QListWidget, QListWidgetItem, QLabel, QPushButton, QAbstractItemView, QSizePolicy
+    )
 from PySide6.QtCore import QPropertyAnimation, QSize, QSettings
 from PySide6.QtGui import QPixmap, Qt, QIcon
 
 from views.dashboard import Dashboard
 from views.po_page import PO_Page
+from views.inventory_management import InventoryManagement
+from views.products.add_product import AddProduct
 
 class MainWindow(QMainWindow):
     def __init__(self,app):
@@ -21,8 +26,8 @@ class MainWindow(QMainWindow):
 
         # layout utama
         layout = QHBoxLayout(main_widget)
-        layout.setSpacing(5)
-        layout.setContentsMargins(5,5,5,5)
+        layout.setSpacing(0)
+        layout.setContentsMargins(0,0,0,0)
         main_widget.setLayout(layout)
 
         # frame kiri
@@ -38,7 +43,7 @@ class MainWindow(QMainWindow):
         self.top_sidebar_frame = QFrame()
         self.top_sidebar_frame.setObjectName('top_sidebar_frame')
         # self.top_sidebar_frame.setMinimumWidth(10)
-        self.top_sidebar_frame.setMaximumHeight(40)
+        self.top_sidebar_frame.setMaximumHeight(42)
         # self.top_sidebar_frame.setContentsMargins(0,0,0,0)
         self.top_sidebar_frame.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
 
@@ -47,12 +52,11 @@ class MainWindow(QMainWindow):
         logo_path = os.path.join(self.assets_dir, 'badge.png')
         self.logo.setPixmap(QPixmap(logo_path).scaled(25,25))
         self.title = QLabel('Kasir')
-        # self.title.setFrameStyle(QFrame.StyledPanel)
 
         self.title_main_menu = QLabel('Menu Utama')
         self.title_main_menu.setObjectName('title_main_menu')
 
-        # menu burger
+        # menu btn
         self.menu_btn = QPushButton()
         self.menu_btn.setObjectName('menu_btn')
         self.menu_btn.setFlat(True)
@@ -101,16 +105,16 @@ class MainWindow(QMainWindow):
         # sidebar items
         self.menu_list = [
             {
-                "name": "Dashboard",
-                "icon": os.path.join(self.assets_dir, 'dashboard.png')
+                "name": "Ringkasan",
+                "icon": os.path.join(self.assets_dir, 'overview.png')
             },
             {
-                "name": "Purchase Order",
-                "icon": os.path.join(self.assets_dir, 'product.png')
+                "name": "Inventaris",
+                "icon": os.path.join(self.assets_dir, 'box.png')
             },
             {
-                "name": "Purchase Order",
-                "icon": os.path.join(self.assets_dir, 'product.png')
+                "name": "Penjualan",
+                "icon": os.path.join(self.assets_dir, 'cart4.png')
             },
             {
                 "name": "Setting",
@@ -138,6 +142,8 @@ class MainWindow(QMainWindow):
         
         # halaman-halaman
         self.right_section.addWidget(Dashboard())
+        self.right_section.addWidget(InventoryManagement(self.right_section))
+        self.right_section.addWidget(AddProduct(self.right_section))
         self.right_section.addWidget(PO_Page())
 
         self.sidebar.itemClicked.connect(self.change_page)
@@ -151,7 +157,7 @@ class MainWindow(QMainWindow):
     def init_list_sidebar(self):
         self.sidebar.clear()
 
-        self.sidebar.setIconSize(QSize(30, 30))
+        self.sidebar.setIconSize(QSize(20, 20))
         self.sidebar.itemAlignment()
         
         for menu in self.menu_list:
@@ -163,12 +169,13 @@ class MainWindow(QMainWindow):
 
     def toggle_sidebar(self):
         self.left_section.setContentsMargins(1,1,1,1)
-
+        # clear listwidgetnya, declare ulang, masukin ke if sidebarexpanded
         # Hide/Show teks pada QListWidgetItem
         for i in range(self.sidebar.count()):
             item = self.sidebar.item(i)
+            print(item.flags())
             if self.sidebar_expanded:
-                item.setText('')  # Hilangkan teks saat collapse
+                item.setText(None)  # Hilangkan teks saat collapse
                 item.setSizeHint(QSize(50, 40))  
                 item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)  
             else:
@@ -184,7 +191,6 @@ class MainWindow(QMainWindow):
             self.left_section.setMinimumHeight(200)
 
             self.top_sidebar_frame.setMaximumWidth(50)
-            self.top_sidebar_frame.setMaximumHeight(50)
 
             self.logo.setHidden(True)
             self.title.setHidden(True)
@@ -198,7 +204,6 @@ class MainWindow(QMainWindow):
             self.left_section.setMaximumWidth(250)
 
             self.top_sidebar_frame.setMaximumWidth(250)
-            self.top_sidebar_frame.setMaximumHeight(50)
 
             self.logo.setHidden(False)
             self.title.setHidden(False)

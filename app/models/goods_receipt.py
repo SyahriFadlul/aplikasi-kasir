@@ -8,3 +8,5 @@ class GoodsReceipt(Base):
     supplier_id = Column(Integer, ForeignKey('suppliers.id'), nullable=False)
     sj_number = Column(String(100))
     received_date = Column(Date, nullable=False)
+    status = Column(Enum('ordered', 'partial', 'received', 'pending'), default='pending')
+    created_by = Column(Integer, ForeignKey('users.id'), nullable=False)

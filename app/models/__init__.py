@@ -7,7 +7,7 @@ from .purchase_order import PurchaseOrder
 from .purchase_order_items import PurchaseOrderItems
 from .goods_receipt import GoodsReceipt
 from .goods_receipt_items import GoodsReceiptItems
-from .costumer import Customer
+from .customer import Customer
 from .costumer_group import CustomerGroup
 from .sale import Sale
 from .sale_items import SaleItems
